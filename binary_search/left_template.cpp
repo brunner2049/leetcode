@@ -41,10 +41,10 @@ left_bound(int nums[], int size, int target)
             right = mid - 1;
         } else if (nums[mid] < target)
         {
-            right = mid - 1;
+            left = mid + 1;
         } else if (nums[mid] > target)
         {
-            left = mid + 1;
+            right = mid - 1;
         }
     }
 
@@ -54,35 +54,16 @@ left_bound(int nums[], int size, int target)
     return left;
 }
 
-int left_bound1(int nums[], int size, int target) {
-    int left = 0, right = size - 1;
-    while (left <= right) {
-        int mid = left + (right - left) / 2;
-        if (nums[mid] < target) {
-            left = mid + 1;
-        } else if (nums[mid] > target) {
-            right = mid - 1;
-        } else if (nums[mid] == target) {
-            // 别返回，锁定左侧边界
-            right = mid - 1;
-        }
-    }
-    // 最后要检查 left 越界的情况
-    if (left >= size || nums[left] != target)
-        return -1;
-    return left;
-}
-
 int
 main(int argc, char *argv[])
 {
     int nums[] = {1, 2, 2, 2, 3};
-    int target = 1;
+    int target = 2;
 
     int index1 = binary_search(nums, 5, target);
     printf("target %d at index %d\n", target, index1);
 
-    int index2 = left_bound1(nums, 5, target);
+    int index2 = left_bound(nums, 5, target);
     printf("target %d at index %d\n", target, index2);
 
     return 0;
