@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <stdio.h>
 
 typedef struct LinkNode {
@@ -5,12 +6,12 @@ typedef struct LinkNode {
     LinkNode *next;
 } LinkList;
 
-LinkList *head;
+LinkNode* init(int values[], int size);
 
-LinkList init(int node[]);
-
-LinkNode get(int i);
+LinkNode* get(int i);
 
 int add(LinkNode *node);
 
 int del(LinkNode *node);
+
+void traverse(LinkList *head);
